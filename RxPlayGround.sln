@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{0C8ED5A5-431E-4E6A-9F77-66BAB3832ACA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{EB2C7E33-AF31-4A7E-A8FE-29BCE0E810C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C8ED5A5-431E-4E6A-9F77-66BAB3832ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C8ED5A5-431E-4E6A-9F77-66BAB3832ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C8ED5A5-431E-4E6A-9F77-66BAB3832ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C8ED5A5-431E-4E6A-9F77-66BAB3832ACA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB2C7E33-AF31-4A7E-A8FE-29BCE0E810C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB2C7E33-AF31-4A7E-A8FE-29BCE0E810C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB2C7E33-AF31-4A7E-A8FE-29BCE0E810C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB2C7E33-AF31-4A7E-A8FE-29BCE0E810C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

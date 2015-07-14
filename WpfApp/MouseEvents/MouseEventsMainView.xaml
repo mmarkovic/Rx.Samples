@@ -1,0 +1,31 @@
+﻿<Window x:Class="WpfApp.MouseEvents.MouseEventsMainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mouseEvents="clr-namespace:WpfApp.MouseEvents"
+        Title="MouseEvents Examples"
+        Width="811"
+        Height="450">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="35" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label Content="Classic Example" Style="{StaticResource TitleMedium}" />
+        <Label Grid.Row="0"
+               Grid.Column="1"
+               Content="Plain Rx Example"
+               Style="{StaticResource TitleMedium}" />
+        <Label Grid.Row="0"
+               Grid.Column="2"
+               Content="Reactive Property Example"
+               Style="{StaticResource TitleMedium}" />
+        <mouseEvents:MouseEventsClassicView Grid.Row="1" Grid.Column="0" />
+        <mouseEvents:MouseEventsPlainRxView Grid.Row="1" Grid.Column="1" />
+        <mouseEvents:MouseEventsReactivePropertyView Grid.Row="1" Grid.Column="2" />
+    </Grid>
+</Window>
