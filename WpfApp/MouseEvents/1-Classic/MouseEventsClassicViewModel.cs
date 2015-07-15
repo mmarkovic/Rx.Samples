@@ -27,7 +27,6 @@ namespace WpfApp.MouseEvents
     {
         private double x;
         private double y;
-
         private bool throttleEnabled;
 
         public event PropertyChangedEventHandler PropertyChanged;

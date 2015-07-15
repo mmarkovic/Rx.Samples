@@ -20,12 +20,17 @@
 
 namespace WpfApp.MouseEvents
 {
+    using System;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
 
     public partial class MouseEventsClassicView : UserControl
     {
+        private static readonly long ThrottleDelta = TimeSpan.FromSeconds(0.5).Ticks;
+
+        private long lastMovementInTicks;
+
         public MouseEventsClassicView()
         {
             this.InitializeComponent();
@@ -34,8 +39,17 @@ namespace WpfApp.MouseEvents
 
         private void DockPanel_MouseMove(object sender, MouseEventArgs e)
         {
-            Point mousePosition = e.GetPosition(this.PlayGround);
             var viewModel = (MouseEventsClassicViewModel)this.DataContext;
+
+            if (viewModel.ThrottleEnabled && (DateTime.Now.Ticks - this.lastMovementInTicks) < ThrottleDelta)
+            {
+                this.lastMovementInTicks = DateTime.Now.Ticks;
+                return;
+            }
+
+            this.lastMovementInTicks = DateTime.Now.Ticks;
+
+            Point mousePosition = e.GetPosition(this.PlayGround);
 
             viewModel.X = mousePosition.X;
             viewModel.Y = mousePosition.Y;

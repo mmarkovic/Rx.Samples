@@ -10,14 +10,18 @@
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:InverseBooleanConverter x:Key="InverseConverter" />
+    </UserControl.Resources>
     <DockPanel>
         <DockPanel DockPanel.Dock="Bottom">
-            <ToggleButton Content="Enable Throttling" IsEnabled="{Binding ThrottleEnabled}" />
+            <ToggleButton Content="Enable Throttling" IsChecked="{Binding ThrottleEnabled}" />
         </DockPanel>
         <Grid MinHeight="150" DockPanel.Dock="Top">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseMove">
-                    <r:EventToReactive ReactiveProperty="{Binding MouseMove}" />
+                    <r:EventToReactiveProperty IsEnabled="{Binding ThrottleEnabled, Converter={StaticResource InverseConverter}}" ReactiveProperty="{Binding MouseMove}" />
+                    <r:EventToReactiveProperty IsEnabled="{Binding ThrottleEnabled}" ReactiveProperty="{Binding ThrottledMouseMove}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <Grid.ColumnDefinitions>

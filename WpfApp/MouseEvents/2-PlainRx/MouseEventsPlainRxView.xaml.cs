@@ -29,28 +29,31 @@ namespace WpfApp.MouseEvents
     public partial class MouseEventsPlainRxView : UserControl
     {
         private readonly IDisposable mouseMoveSubscription;
+        private readonly IDisposable throttledMouseMoveSubscription;
 
         public MouseEventsPlainRxView()
         {
             this.InitializeComponent();
-            this.DataContext = new MouseEventsClassicViewModel();
 
-            this.mouseMoveSubscription = Observable
+            var viewModel = new MouseEventsPlainRxViewModel();
+            this.DataContext = viewModel;
+
+            IObservable<Point> mousePositionSubject = Observable
                 .FromEventPattern<MouseEventArgs>(this, "MouseMove")
-                .Select(x => x.EventArgs.GetPosition(this.PlayGround))
-                .Subscribe(
-                    position =>
-                    {
-                        var viewModel = (MouseEventsClassicViewModel)this.DataContext;
+                .Select(x => x.EventArgs.GetPosition(this.PlayGround));
 
-                        viewModel.X = position.X;
-                        viewModel.Y = position.Y;
-                    });
+            this.mouseMoveSubscription = mousePositionSubject
+                .Subscribe(pos => viewModel.SetMousePosition(pos.X, pos.Y));
+
+            this.throttledMouseMoveSubscription = mousePositionSubject
+                .Throttle(TimeSpan.FromSeconds(0.5))
+                .Subscribe(pos => viewModel.SetThrottledMouseMove(pos.X, pos.Y));
         }
 
         private void MouseEventsPlainRxView_OnUnloaded(object sender, RoutedEventArgs e)
         {
             this.mouseMoveSubscription.Dispose();
+            this.throttledMouseMoveSubscription.Dispose();
         }
     }
 }

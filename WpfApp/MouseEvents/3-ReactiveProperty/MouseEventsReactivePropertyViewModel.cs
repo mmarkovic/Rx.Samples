@@ -39,20 +39,30 @@ namespace WpfApp.MouseEvents
         public MouseEventsReactivePropertyViewModel()
         {
             this.MouseMove = new ReactiveProperty<MouseEventArgs>(mode: ReactivePropertyMode.None);
-
-            this.MouseMove
-                .Select(x => x.GetPosition(x.Source as UIElement))
+            this.MouseMove.Select(x => x.GetPosition(x.Source as UIElement))
                 .Subscribe(
                     position =>
-                        {
-                            this.X = position.X;
-                            this.Y = position.Y;
-                        });
+                    {
+                        this.X = position.X;
+                        this.Y = position.Y;
+                    });
+
+            this.ThrottledMouseMove = new ReactiveProperty<MouseEventArgs>(mode: ReactivePropertyMode.None);
+            this.ThrottledMouseMove.Select(x => x.GetPosition(x.Source as UIElement))
+                .Throttle(TimeSpan.FromSeconds(0.5))
+                .Subscribe(
+                    position =>
+                    {
+                        this.X = position.X;
+                        this.Y = position.Y;
+                    });
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ReactiveProperty<MouseEventArgs> MouseMove { get; private set; }
+
+        public ReactiveProperty<MouseEventArgs> ThrottledMouseMove { get; private set; }
 
         public double X
         {
@@ -102,6 +112,7 @@ namespace WpfApp.MouseEvents
         public void Dispose()
         {
             this.MouseMove.Dispose();
+            this.ThrottledMouseMove.Dispose();
         }
 
         [NotifyPropertyChangedInvocator]

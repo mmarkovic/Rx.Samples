@@ -10,7 +10,7 @@
              mc:Ignorable="d">
     <DockPanel>
         <DockPanel DockPanel.Dock="Bottom">
-            <ToggleButton Content="Enable Throttling" IsEnabled="{Binding ThrottleEnabled}" />
+            <ToggleButton Content="Enable Throttling" IsChecked="{Binding ThrottleEnabled}" />
         </DockPanel>
         <Grid MinHeight="150" DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>

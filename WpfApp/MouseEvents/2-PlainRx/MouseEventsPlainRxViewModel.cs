@@ -27,7 +27,6 @@ namespace WpfApp.MouseEvents
     {
         private double x;
         private double y;
-
         private bool throttleEnabled;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -74,6 +73,24 @@ namespace WpfApp.MouseEvents
                     this.throttleEnabled = value;
                     this.OnPropertyChanged();
                 }
+            }
+        }
+
+        public void SetMousePosition(double x, double y)
+        {
+            if (!this.ThrottleEnabled)
+            {
+                this.X = x;
+                this.Y = y;
+            }
+        }
+
+        public void SetThrottledMouseMove(double x, double y)
+        {
+            if (this.ThrottleEnabled)
+            {
+                this.X = x;
+                this.Y = y;
             }
         }
 

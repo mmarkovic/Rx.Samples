@@ -119,6 +119,7 @@
       <DependentUpon>MouseEventsPlainRxView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MouseEvents\2-PlainRx\MouseEventsPlainRxViewModel.cs" />
+    <Compile Include="MouseEvents\3-ReactiveProperty\InverseBoolConverter.cs" />
     <Compile Include="MouseEvents\3-ReactiveProperty\MouseEventsReactivePropertyView.xaml.cs">
       <DependentUpon>MouseEventsReactivePropertyView.xaml</DependentUpon>
     </Compile>
